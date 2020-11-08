@@ -1,0 +1,24 @@
+---
+title: "Leaflet - Developing Data Products"
+author: "PS"
+date: "8/11/2020"
+output: html_document
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(leaflet)
+dgo_states <- data.frame(name = c("Durango","Gomez Palacio","Canatlán","Pueblo Nuevo","Cuencame"),
+                         cases = c(8847, 4252, 140, 389, 114),
+                         lat = c(24.019860, 25.583062, 24.488927, 23.398064, 24.867623),
+                         lng = c(-104.664207,-103.492911, -105.048876, -105.358855, -103.697245))
+dgo_states %>%
+              leaflet() %>%
+              addTiles() %>%
+              addCircles(weight = 1, radius = sqrt(dgo_states$cases) * 800 )
+```
+
+Covid-19 cases in some townships in the little state where I live.
